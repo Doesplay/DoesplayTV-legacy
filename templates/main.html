@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CoD eSports VODs</title>
+    <title>{$title}</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -26,11 +26,11 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">CoD eSports VODs</a>
+          <a class="navbar-brand" href="index.php">CoD eSports VODs</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="index.php">Home</a></li>
             <li><a href="#about" data-toggle="modal" data-target="#aboutModal">About</a></li>
             <li><a href="#contact" data-toggle="modal" data-target="#contactModal">Contact</a></li>
             
@@ -53,7 +53,9 @@
 		{if isset($notice)}
 			<div class="alert alert-info" role="alert">{$notice}</div>
 		{/if}
-		{$page_content}
+		{block "wrapper"}
+			{$content}
+		{/block}
     </div> <!-- /container -->
 	
 	<!-- About dialog -->

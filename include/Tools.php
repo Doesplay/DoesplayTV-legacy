@@ -1,10 +1,8 @@
 <?php
 class Tools {
 	public function getVideoId($url) {
-		preg_match(
-        '/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
-		
-		return $matches[1];
+		parse_str(parse_url($url, PHP_URL_QUERY), $id);
+		return $id['v'];
 	}
 }
 ?>
