@@ -1,6 +1,7 @@
 {extends "main.html"}
 
 {block "wrapper"}
+{auto_escape on}
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title"><b>{$game}</b></h3>
@@ -11,4 +12,5 @@
 			</div>
 		</div>
 	</div>
+{/auto_escape}
 {/block}
