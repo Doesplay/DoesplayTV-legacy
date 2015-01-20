@@ -1,0 +1,9 @@
+{extends "main.html"}
+
+{block "wrapper"}
+	<div class="list-group">
+		{foreach $series val}
+			<a href="#" class="list-group-item">{$val.host} {$val.event} - {$val.teamA} vs. {$val.teamB} // {$val.date} (BO{$val.bestof})</a>
+		{/foreach}
+	</div>
+{/block}

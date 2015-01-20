@@ -1,0 +1,23 @@
+{extends "main.html"}
+
+{block "wrapper"}
+	<div class="jumbotron">
+		<h1>Coming soon!</h1>
+		<p>We aim to create a comprehensive database of VODs from the competitive Call of Duty pro scene.</p>
+		<p><a class="btn btn-primary btn-lg" href="http://twitter.com/Kairuxo" role="button">Learn more</a></p>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4"> </div>
+		<div class="col-md-4">
+			<form class="form-horizontal" role="form" method="post" action="search.php">
+				<div class="input-group">
+					<input type="text" class="form-control" id="query" name="query" placeholder="Search for...">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">Search</button>
+					</span>
+				</div>
+			</form>
+		</div>
+	</div>
+{/block}
