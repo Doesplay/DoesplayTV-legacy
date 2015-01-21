@@ -12,15 +12,25 @@ $data = array();
 // Setting to null doesn't show the notice.
 $notice = null;
 
-$game = $_GET["game"];
-$id = Tools::getVideoId($_GET["video"]);
+$link = $_GET['url'];
+
+$id = Tools::getVideoId($link);
 $url = 'https://www.youtube.com/embed/' . $id;
 
-$data['title'] = 'VOD: ' . $game;
-$data['game'] = $game;
+$map = array();
+$map['teamA'] = $_GET['teamA'];
+$map['teamB'] = $_GET['teamB'];
+$map['bestof'] = $_GET['bestof'];
+$map['event'] = $_GET['event'];
+$map['host'] = $_GET['host'];
+$map['date'] = $_GET['date'];
+$map['num'] = $_GET['num'];
+$map['url'] = $url;
+
+$data['title'] = 'Map #'. $map['num'] . ' - ' . $map['teamA'] . ' vs. ' . $map['teamB'];
 // content is the tag for the main content of the page.
-$data['content'] = $url;
 $data['notice'] = $notice;
+$data['map'] = $map;
  
 // Output the result ... 
 $dwoo->output('templates/video.html', $data);

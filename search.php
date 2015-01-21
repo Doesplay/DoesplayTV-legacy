@@ -18,7 +18,12 @@ if ($_POST["query"]) {
 	$term = $_POST['query'];
 }
 
-$result = Tools::searchDb("SELECT * FROM series WHERE teamA LIKE '%" . $term . "%' OR teamB LIKE '%" . $term . "%'");
+$sql = "SELECT * FROM series WHERE teamA LIKE '%" . $term . "%' OR teamB LIKE '%" . $term . "%'";
+$sql .= " ORDER BY date";
+//$sql .= " UNION ALL";
+//$sql .= " SELECT * FROM hosts WHERE name LIKE '%" . $term . "%'";
+
+$result = Tools::searchDb($sql);
 
 $series = array();
 $maps = array();
@@ -51,6 +56,7 @@ if ($result->num_rows > 0) {
 			$m['url'] = $row4['url'];
 			array_push($maps, $m);
 		}
+		$h['maps'] = $maps;
 		array_push($series, $h);
 	}
 } else {
