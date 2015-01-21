@@ -1,9 +1,28 @@
 {extends "main.html"}
 
 {block "wrapper"}
-	<div class="list-group">
+	{if $fail == 0}
 		{foreach $series val}
-			<a href="#" class="list-group-item">{$val.host} {$val.event} - {$val.teamA} vs. {$val.teamB} // {$val.date} (BO{$val.bestof})</a>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">{$val.host} {$val.event} - {$val.teamA} vs. {$val.teamB} // {$val.date} (BO{$val.bestof})</h3>
+				</div>
+				<div class="panel-body">
+					<b>Maps: </b>
+					{foreach $maps map}
+						<a href="{$map.url}">#{$map.number}, </a>
+					{/foreach}
+				</div>
+			</div>
 		{/foreach}
-	</div>
+	{else}
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">No results!</h3>
+			</div>
+			<div class="panel-body">
+				<b>Try using the full team name! ie: "compLexity" rather than "coL".</b>
+			</div>
+		</div>
+	{/if}
 {/block}

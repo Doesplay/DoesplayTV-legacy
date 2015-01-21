@@ -18,9 +18,12 @@ if ($_POST["query"]) {
 	$term = $_POST['query'];
 }
 
-$result = Tools::searchDb("SELECT * FROM series WHERE teamA LIKE '%" . $term . "%'");
+$result = Tools::searchDb("SELECT * FROM series WHERE teamA LIKE '%" . $term . "%' OR teamB LIKE '%" . $term . "%'");
 
 $series = array();
+$maps = array();
+
+$fail = 0;
 
 if ($result->num_rows > 0) {
 	// output data of each row
@@ -30,18 +33,28 @@ if ($result->num_rows > 0) {
 		$h['bestof'] = $row['bestof'];
 		$h['teamA'] = $row['teamA'];
 		$h['teamB'] = $row['teamB'];
+		// Fetch host from database
 		$findHost = Tools::searchDb("SELECT * FROM hosts WHERE id='".$row['host']."'");
 		while($row2 = $findHost->fetch_assoc()) {
 			$h['host'] = $row2['name'];
 		}
+		// Fetch event name from database
 		$findEvent = Tools::searchDb("SELECT * FROM events WHERE id='".$row['event']."'");
 		while($row3 = $findEvent->fetch_assoc()) {
 			$h['event'] = $row3['name'];
 		}
+		// Fetch map urls from database
+		$findMaps = Tools::searchDb("SELECT * FROM maps WHERE series='".$row['id']."'");
+		while($row4 = $findMaps->fetch_assoc()) {
+			$m = array();
+			$m['number'] = $row4['number'];
+			$m['url'] = $row4['url'];
+			array_push($maps, $m);
+		}
 		array_push($series, $h);
 	}
 } else {
-	echo "0 results";
+	$fail = 1;
 }
 
 $data['title'] = 'CoD eSports VODs';
@@ -49,6 +62,8 @@ $data['title'] = 'CoD eSports VODs';
 $data['content'] = '';
 $data['notice'] = $notice;
 $data['series'] = $series;
+$data['maps'] = $maps;
+$data['fail'] = $fail;
 
 // Output the result ... 
 $dwoo->output('templates/search.html', $data);
