@@ -38,6 +38,7 @@ if ($result->num_rows > 0) {
 		$seriesTemp['bestof'] = $row['bestof'];
 		$seriesTemp['teamA'] = $row['teamA'];
 		$seriesTemp['teamB'] = $row['teamB'];
+		$seriesTemp['comment'] = $row['comment'];
 		$seriesTemp['id'] = $row['id'];
 		// Fetch host from database
 		$findHost = Tools::searchDb("SELECT * FROM hosts WHERE id='".$row['host']."'");

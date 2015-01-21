@@ -5,13 +5,13 @@
 		{foreach $series val}
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">{$val.host} {$val.event} - {$val.teamA} vs. {$val.teamB} // {$val.date} (BO{$val.bestof})</h3>
+					<h3 class="panel-title">{$val.host} {$val.event} - {$val.teamA} vs. {$val.teamB} // {$val.date} (BO{$val.bestof}) // {$val.comment}</h3>
 				</div>
 				<div class="panel-body">
 					<b>Maps: </b>
 					{foreach $val.maps map}
 						{if $map.series == $val.id}
-							<a href="video.php?teamA={$val.teamA}&teamB={$val.teamB}&bestof={$val.bestof}&event={$val.event}&host={$val.host}&date={$val.date}&num={$map.number}&url={$map.url}" target="blank">#{$map.number} </a>
+							<a href="video.php?teamA={$val.teamA}&teamB={$val.teamB}&bestof={$val.bestof}&event={$val.event}&host={$val.host}&date={$val.date}&num={$map.number}&url={$map.url}&comment={$val.comment}" target="blank">#{$map.number} </a>
 						{/if}
 					{/foreach}
 				</div>

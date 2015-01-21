@@ -25,6 +25,7 @@ $map['event'] = $_GET['event'];
 $map['host'] = $_GET['host'];
 $map['date'] = $_GET['date'];
 $map['num'] = $_GET['num'];
+$map['comment'] = $_GET['comment'];
 $map['url'] = $url;
 
 $data['title'] = 'Map #'. $map['num'] . ' - ' . $map['teamA'] . ' vs. ' . $map['teamB'] . " - " . $map['host'] . " " . $map['event'];
