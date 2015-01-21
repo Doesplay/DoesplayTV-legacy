@@ -19,6 +19,7 @@ if ($result->num_rows > 0) {
 	while($row = $result->fetch_assoc()) {
 		$h = array();
 		$h['name'] = $row['name'];
+		$h['website'] = $row['website'];
 		$h['region'] = $row['region'];
 		array_push($hosts, $h);
 	}

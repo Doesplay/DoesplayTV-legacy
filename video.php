@@ -27,7 +27,7 @@ $map['date'] = $_GET['date'];
 $map['num'] = $_GET['num'];
 $map['url'] = $url;
 
-$data['title'] = 'Map #'. $map['num'] . ' - ' . $map['teamA'] . ' vs. ' . $map['teamB'];
+$data['title'] = 'Map #'. $map['num'] . ' - ' . $map['teamA'] . ' vs. ' . $map['teamB'] . " - " . $map['host'] . " " . $map['event'];
 // content is the tag for the main content of the page.
 $data['notice'] = $notice;
 $data['map'] = $map;

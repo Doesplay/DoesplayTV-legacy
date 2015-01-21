@@ -19,7 +19,7 @@ if ($_POST["query"]) {
 }
 
 $sql = "SELECT * FROM series WHERE teamA LIKE '%" . $term . "%' OR teamB LIKE '%" . $term . "%'";
-$sql .= " ORDER BY date";
+//$sql .= " ORDER BY date DESC";
 //$sql .= " UNION ALL";
 //$sql .= " SELECT * FROM hosts WHERE name LIKE '%" . $term . "%'";
 
@@ -33,20 +33,21 @@ $fail = 0;
 if ($result->num_rows > 0) {
 	// output data of each row
 	while($row = $result->fetch_assoc()) {
-		$h = array();
-		$h['date'] = $row['date'];
-		$h['bestof'] = $row['bestof'];
-		$h['teamA'] = $row['teamA'];
-		$h['teamB'] = $row['teamB'];
+		$seriesTemp = array();
+		$seriesTemp['date'] = $row['date'];
+		$seriesTemp['bestof'] = $row['bestof'];
+		$seriesTemp['teamA'] = $row['teamA'];
+		$seriesTemp['teamB'] = $row['teamB'];
+		$seriesTemp['id'] = $row['id'];
 		// Fetch host from database
 		$findHost = Tools::searchDb("SELECT * FROM hosts WHERE id='".$row['host']."'");
 		while($row2 = $findHost->fetch_assoc()) {
-			$h['host'] = $row2['name'];
+			$seriesTemp['host'] = $row2['name'];
 		}
 		// Fetch event name from database
 		$findEvent = Tools::searchDb("SELECT * FROM events WHERE id='".$row['event']."'");
 		while($row3 = $findEvent->fetch_assoc()) {
-			$h['event'] = $row3['name'];
+			$seriesTemp['event'] = $row3['name'];
 		}
 		// Fetch map urls from database
 		$findMaps = Tools::searchDb("SELECT * FROM maps WHERE series='".$row['id']."'");
@@ -54,10 +55,12 @@ if ($result->num_rows > 0) {
 			$m = array();
 			$m['number'] = $row4['number'];
 			$m['url'] = $row4['url'];
+			$m['id'] = $row4['id'];
+			$m['series'] = $row4['series'];
 			array_push($maps, $m);
 		}
-		$h['maps'] = $maps;
-		array_push($series, $h);
+		$seriesTemp['maps'] = $maps;
+		array_push($series, $seriesTemp);
 	}
 } else {
 	$fail = 1;
