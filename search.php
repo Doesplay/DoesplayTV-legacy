@@ -15,7 +15,7 @@ $notice = null;
 $term = null;
 
 if ($_POST["query"]) {
-	$term = $_POST['query'];
+	$term = trim($_POST['query']);
 }
 
 $sql = "SELECT * FROM series WHERE teamA LIKE '%" . $term . "%' OR teamB LIKE '%" . $term . "%'";
