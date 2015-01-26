@@ -10,7 +10,7 @@ $dwoo = new Dwoo();
 $data = array();
 
 // Setting to null doesn't show the notice.
-$notice = "Searching only works by team at the moment!";
+$notice = null;
 
 $data['title'] = 'CoD eSports VODs';
 // content is the tag for the main content of the page.

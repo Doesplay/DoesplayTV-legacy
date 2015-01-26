@@ -1,18 +1,36 @@
 {extends "main.html"}
 
 {block "wrapper"}
-	<div class="jumbotron">
-		<h1>Coming soon!</h1>
-		<p>We aim to create a comprehensive database of VODs from the competitive Call of Duty pro scene.</p>
-		<p><a class="btn btn-primary btn-lg" href="http://twitter.com/Kairuxo" role="button">Learn more</a></p>
-	</div>
-	
 	<div class="row">
-		<div class="col-md-4"> </div>
-		<div class="col-md-4">
+		<div class="col-md-6 col-md-offset-3">
 			<form class="form-horizontal" role="form" method="post" action="search.php">
-				<div class="input-group">
-					<input type="text" class="form-control" id="query" name="query" placeholder="Search for...">
+				<div class="input-group input-group-lg">
+					<select class="selectpicker" name="host" data-width="30%" data-live-search="true" title="Host...">
+							<?php
+								include '../../include/Tools.php'; 
+								$hosts = Tools::searchDb("SELECT * FROM hosts");
+								if ($hosts->num_rows > 0) {
+									// output data of each row
+									while($hRow = $hosts->fetch_assoc()) {
+										echo '<option value="'.$hRow['id'].'">'.$hRow['name'].'</option>';
+									}
+								}
+							?>
+						</select>
+					<select class="selectpicker" name="event" data-width="10%" data-live-search="true" title="Host...">
+							<?php
+								$events = Tools::searchDb("SELECT * FROM events");
+								if ($events->num_rows > 0) {
+									// output data of each row
+									while($evRow = $events->fetch_assoc()) {
+										echo '<option value="'.$evRow['id'].'">'.$evRow['name'].'</option>';
+									}
+								}
+							?>
+						</select>
+				</div>
+				<div class="input-group input-group-lg">
+					<input type="text" class="form-control" id="team" name="team" placeholder="Team...">
 					<span class="input-group-btn">
 						<button class="btn btn-default" type="submit">Search</button>
 					</span>

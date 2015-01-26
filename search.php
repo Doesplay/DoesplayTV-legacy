@@ -12,16 +12,25 @@ $data = array();
 // Setting to null doesn't show the notice.
 $notice = null;
 
-$term = null;
-
-if ($_POST["query"]) {
-	$term = trim($_POST['query']);
+$team = null;
+$host = null;
+$event = null;
+if ($_POST["team"]) {
+	$team = trim($_POST['team']);
+}
+if ($_POST["host"]) {
+	$host = trim($_POST['host']);
+}
+if ($_POST["event"]) {
+	$event = trim($_POST['event']);
 }
 
-$sql = "SELECT * FROM series WHERE teamA LIKE '%" . $term . "%' OR teamB LIKE '%" . $term . "%'";
-//$sql .= " ORDER BY date DESC";
-//$sql .= " UNION ALL";
-//$sql .= " SELECT * FROM hosts WHERE name LIKE '%" . $term . "%'";
+$sql = "SELECT series.* FROM series
+	LEFT JOIN events ON series.event=events.id
+	LEFT JOIN hosts on events.host=hosts.id
+		WHERE (series.teamA LIKE '%" . $team . "%' OR series.teamB LIKE '%" . $team . "%' AND events.id='" . $event . "' AND hosts.id='" . $host . "')
+		AND (series.teamA LIKE '%" . $team . "%' OR series.teamB LIKE '%" . $team . "%' AND events.id='" . $event . "' AND hosts.id='" . $host . "')
+";
 
 $result = Tools::searchDb($sql);
 
