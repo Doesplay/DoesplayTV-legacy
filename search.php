@@ -58,6 +58,7 @@ if ($result->num_rows > 0) {
 		$findEvent = Tools::searchDb("SELECT * FROM events WHERE id='".$row['event']."'");
 		while($row3 = $findEvent->fetch_assoc()) {
 			$seriesTemp['event'] = $row3['name'];
+			$seriesTemp['game'] = $row3['game'];
 		}
 		// Fetch map urls from database
 		$findMaps = Tools::searchDb("SELECT * FROM maps WHERE series='".$row['id']."'");
