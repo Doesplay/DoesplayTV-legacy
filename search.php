@@ -26,11 +26,9 @@ if ($_POST["event"]) {
 }
 
 $sql = "SELECT series.* FROM series
-	LEFT JOIN events ON series.event=events.id
-	LEFT JOIN hosts on events.host=hosts.id
-		WHERE (series.teamA LIKE '%" . $team . "%' OR series.teamB LIKE '%" . $team . "%' AND events.id=" . $event . " AND hosts.id=" . $host . ")
-		AND (series.teamA LIKE '%" . $team . "%' OR series.teamB LIKE '%" . $team . "%' AND events.id=" . $event . " AND hosts.id=" . $host . ")
-";
+		JOIN events ON series.event=events.id
+		JOIN hosts on events.host=hosts.id
+			WHERE (series.teamA LIKE '%" . $team . "%' OR series.teamB LIKE '%" . $team . "%') AND events.id=" . $event . " AND hosts.id=" . $host;
 
 $result = Tools::searchDb($sql);
 
