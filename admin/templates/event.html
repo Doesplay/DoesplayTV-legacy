@@ -1,0 +1,26 @@
+<h3>Add Event</h3>
+<form class="form-horizontal" role="form" method="post" action="inc/addevent.php">
+	<div class="input-group input-group-lg">
+		<select class="selectpicker" name="host" data-live-search="true" title="Host...">
+			<?php
+				include '../include/Tools.php'; 
+				$hosts = Tools::searchDb("SELECT * FROM hosts");
+				if ($hosts->num_rows > 0) {
+					// output data of each row
+					while($hRow = $hosts->fetch_assoc()) {
+						echo '<option value="'.$hRow['id'].'">'.$hRow['name'].'</option>';
+					}
+				}
+			?>
+		</select>
+		<input type="text" class="form-control" id="name" name="name" placeholder="Name...">
+		<input type="text" class="form-control" id="game" name="game" placeholder="Game...">
+		
+	</div>
+	
+	<div class="input-group input-group-lg">
+		<span class="input-group-btn">
+			<button class="btn btn-default" type="submit">Submit</button>
+		</span>
+	</div>
+</form>

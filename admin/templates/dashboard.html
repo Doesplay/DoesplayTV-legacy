@@ -1,0 +1,85 @@
+{extends "main.html"}
+
+{block "wrapper"}
+	{literal}
+		<style>
+			.glyphicon { margin-right:10px; }
+			.fa { margin-right:10px; }
+			.panel-body { padding:0px; }
+			.panel-body table tr td { padding-left: 15px }
+			.panel-body .table {margin-bottom: 0px; }
+		</style>
+	{/literal}
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3 col-md-3">
+				<div class="panel-group" id="accordion">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="fa fa-tachometer fa-lg">
+								</span>Dashboard</a>
+							</h4>
+						</div>
+						<div id="collapseOne" class="panel-collapse collapse in">
+							<div class="panel-body">
+								<table class="table">
+									<tr>
+										<td>
+											<i class="fa fa-home fa-lg"></i><a href="dashboard.php">Home</a>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<i class="fa fa-exclamation-triangle fa-lg"></i><a href="notice.php" class="ajax" data-replace-inner=".well">Notice</a>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="panel-group" id="accordion">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="fa fa-plus fa-lg">
+								</span>Add</a>
+							</h4>
+						</div>
+						<div id="collapseTwo" class="panel-collapse collapse in">
+							<div class="panel-body">
+								<table class="table">
+									<tr>
+										<td>
+											<i class="fa fa-home fa-lg"></i><a href="host.php" class="ajax" data-replace-inner=".well">Host</a>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<i class="fa fa-trophy fa-lg"></i><a href="event.php" class="ajax" data-replace-inner=".well">Event</a>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<i class="fa fa-gamepad fa-lg"></i><a href="series.php" class="ajax" data-replace-inner=".well">Series</a>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-9 col-md-9">
+				<div class="well" style="padding-top: 0px">
+				<h3>Dashboard</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+{/block}
