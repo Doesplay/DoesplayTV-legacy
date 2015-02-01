@@ -5,29 +5,27 @@
 		<div class="col-md-6 col-md-offset-3">
 			<form class="form-horizontal" role="form" method="post" action="search.php">
 				<div class="input-group input-group-lg">
-					<select class="selectpicker" name="host" data-width="30%" data-live-search="true" title="Host...">
-							<?php
-								include '../../include/Tools.php'; 
-								$hosts = Tools::searchDb("SELECT * FROM hosts");
-								if ($hosts->num_rows > 0) {
-									// output data of each row
-									while($hRow = $hosts->fetch_assoc()) {
-										echo '<option value="'.$hRow['id'].'">'.$hRow['name'].'</option>';
+					<select class="selectpicker" name="event" data-width="null" data-live-search="true" title="Event...">
+						<?php
+							$events = Tools::searchDb("SELECT * FROM events");
+							if ($events->num_rows > 0) {
+								// output data of each row
+								while($row = $events->fetch_assoc()) {
+									$value = $row['host'] . "," . $row['id'];
+									$hostname = "";
+									
+									$hosts = Tools::searchDb("SELECT * FROM hosts WHERE id=" . $row['host']);
+									if ($hosts->num_rows > 0) {
+										while($row2 = $hosts->fetch_assoc()) {
+											$hostname = $row2['name'];
+										}
 									}
+									$name = $hostname . " " . $row['name'];
+									echo '<option value="'.$value.'">'.$name.'</option>';
 								}
-							?>
-						</select>
-					<select class="selectpicker" name="event" data-width="10%" data-live-search="true" title="Host...">
-							<?php
-								$events = Tools::searchDb("SELECT * FROM events");
-								if ($events->num_rows > 0) {
-									// output data of each row
-									while($evRow = $events->fetch_assoc()) {
-										echo '<option value="'.$evRow['id'].'">'.$evRow['name'].'</option>';
-									}
-								}
-							?>
-						</select>
+							}
+						?>
+					</select>
 				</div>
 				<div class="input-group input-group-lg">
 					<input type="text" class="form-control" id="team" name="team" placeholder="Team...">

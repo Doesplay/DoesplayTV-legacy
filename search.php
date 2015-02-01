@@ -18,11 +18,10 @@ $event = null;
 if ($_POST["team"]) {
 	$team = trim($_POST['team']);
 }
-if ($_POST["host"]) {
-	$host = trim($_POST['host']);
-}
 if ($_POST["event"]) {
-	$event = trim($_POST['event']);
+	$raw = explode(',', $_POST['event']);
+	$host = $raw[0];
+	$event = $raw[1];
 }
 
 $sql = "SELECT series.* FROM series
