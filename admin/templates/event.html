@@ -13,8 +13,18 @@
 				}
 			?>
 		</select>
+		<select class="selectpicker" name="game" data-live-search="true" title="Game...">
+			<?php
+				$games = Tools::searchDb("SELECT * FROM games");
+				if ($games->num_rows > 0) {
+					// output data of each row
+					while($gRow = $games->fetch_assoc()) {
+						echo '<option value="'.$gRow['name'].'">'.$gRow['friendly'].'</option>';
+					}
+				}
+			?>
+		</select>
 		<input type="text" class="form-control" id="name" name="name" placeholder="Name...">
-		<input type="text" class="form-control" id="game" name="game" placeholder="Game...">
 		
 	</div>
 	

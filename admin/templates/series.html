@@ -1,1 +1,64 @@
-<b>series</b>
+<html>
+	<head>
+		<!-- Bootstrap Select -->
+		<link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" rel="stylesheet">
+	</head>
+	
+	<body>
+
+
+<h3>Add Series</h3>
+<form class="form-horizontal" role="form" method="post" action="inc/addseries.php">
+	<div class="input-group input-group-lg">
+		<input type="text" class="form-control" id="date" name="date" placeholder="YYYY-MM-DD...">
+		<input type="text" class="form-control" id="bestof" name="bestof" placeholder="Best Of...">
+		<select class="selectpicker" name="host" data-live-search="true" title="Host...">
+			<?php
+				include '../include/Tools.php'; 
+				$hosts = Tools::searchDb("SELECT * FROM hosts");
+				if ($hosts->num_rows > 0) {
+					// output data of each row
+					while($hRow = $hosts->fetch_assoc()) {
+						echo '<option value="'.$hRow['id'].'">'.$hRow['name'].'</option>';
+					}
+				}
+			?>
+		</select>
+		<select class="selectpicker" name="event" data-live-search="true" title="Event...">
+			<?php
+				$events = Tools::searchDb("SELECT * FROM events");
+				if ($events->num_rows > 0) {
+					// output data of each row
+					while($evRow = $events->fetch_assoc()) {
+						echo '<option value="'.$evRow['id'].'">'.$evRow['name'].'</option>';
+					}
+				}
+			?>
+		</select>
+		<input type="text" class="form-control" id="teamA" name="teamA" placeholder="Team A...">
+		<input type="text" class="form-control" id="teamB" name="teamB" placeholder="Team B...">
+		<input type="text" class="form-control" id="comment" name="comment" placeholder="Comment...">
+		<input type="text" class="form-control" id="map1" name="map1" placeholder="Map 1...">
+		<input type="text" class="form-control" id="map2" name="map2" placeholder="Map 2...">
+		<input type="text" class="form-control" id="map3" name="map3" placeholder="Map 3...">
+		<input type="text" class="form-control" id="map4" name="map4" placeholder="Map 4...">
+		<input type="text" class="form-control" id="map5" name="map5" placeholder="Map 5...">
+		<input type="text" class="form-control" id="map6" name="map6" placeholder="Map 6...">
+		<input type="text" class="form-control" id="map7" name="map7" placeholder="Map 7...">
+		<input type="text" class="form-control" id="map8" name="map8" placeholder="Map 8...">
+		<input type="text" class="form-control" id="map9" name="map9" placeholder="Map 9...">
+		<input type="text" class="form-control" id="map10" name="map10" placeholder="Map 10...">
+		<input type="text" class="form-control" id="map11" name="map11" placeholder="Map 11...">
+	</div>
+	
+	<div class="input-group input-group-lg">
+		<span class="input-group-btn">
+			<button class="btn btn-default" type="submit">Submit</button>
+		</span>
+	</div>
+</form>
+
+		<!-- Bootstrap Select -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+	</body>
+</html>
