@@ -7,16 +7,18 @@
 				<div class="input-group input-group-lg">
 					<select class="selectpicker" name="event" data-width="null" data-live-search="true" title="Event...">
 						<?php
-							$events = Tools::searchDb("SELECT * FROM events");
-							if ($events->num_rows > 0) {
+							$db = new Database();
+							
+							$events = $db->query("SELECT * FROM events");
+							if (mysqli_num_rows($events) > 0) {
 								// output data of each row
-								while($row = $events->fetch_assoc()) {
+								while($row = mysqli_fetch_assoc($events)) {
 									$value = $row['host'] . "," . $row['id'];
 									$hostname = "";
 									
-									$hosts = Tools::searchDb("SELECT * FROM hosts WHERE id=" . $row['host']);
-									if ($hosts->num_rows > 0) {
-										while($row2 = $hosts->fetch_assoc()) {
+									$hosts = $db->query("SELECT * FROM hosts WHERE id=" . $row['host']);
+									if (mysqli_num_rows($hosts) > 0) {
+										while($row2 = mysqli_fetch_assoc($hosts)) {
 											$hostname = $row2['name'];
 										}
 									}

@@ -1,12 +1,3 @@
-<html>
-	<head>
-		<!-- Bootstrap Select -->
-		<link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" rel="stylesheet">
-	</head>
-	
-	<body>
-
-
 <h3>Add Series</h3>
 <form class="form-horizontal" role="form" method="post" action="inc/addseries.php">
 	<div class="input-group input-group-lg">
@@ -14,11 +5,12 @@
 		<input type="text" class="form-control" id="bestof" name="bestof" placeholder="Best Of...">
 		<select class="selectpicker" name="host" data-live-search="true" title="Host...">
 			<?php
-				include '../include/Tools.php'; 
-				$hosts = Tools::searchDb("SELECT * FROM hosts");
-				if ($hosts->num_rows > 0) {
+				include '../include/Database.php'; 
+				$db = new Database();
+				$hosts = $db->query("SELECT * FROM hosts");
+				if (mysqli_num_rows($hosts) > 0) {
 					// output data of each row
-					while($hRow = $hosts->fetch_assoc()) {
+					while($hRow = mysqli_fetch_assoc($hosts)) {
 						echo '<option value="'.$hRow['id'].'">'.$hRow['name'].'</option>';
 					}
 				}
@@ -26,10 +18,11 @@
 		</select>
 		<select class="selectpicker" name="event" data-live-search="true" title="Event...">
 			<?php
-				$events = Tools::searchDb("SELECT * FROM events");
-				if ($events->num_rows > 0) {
+				$db = new Database();
+				$events = $db->query("SELECT * FROM events");
+				if (mysqli_num_rows($events) > 0) {
 					// output data of each row
-					while($evRow = $events->fetch_assoc()) {
+					while($evRow = mysqli_fetch_assoc($events)) {
 						echo '<option value="'.$evRow['id'].'">'.$evRow['name'].'</option>';
 					}
 				}
@@ -57,8 +50,3 @@
 		</span>
 	</div>
 </form>
-
-		<!-- Bootstrap Select -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
-	</body>
-</html>

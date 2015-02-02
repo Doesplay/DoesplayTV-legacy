@@ -1,7 +1,7 @@
 <?php
 // Include the main class, the rest will be automatically loaded
 include 'lib/dwooAutoload.php'; 
-include 'include/Tools.php';
+include 'include/Database.php';
  
 // Create the controller, it is reusable and can render multiple templates
 $dwoo = new Dwoo(); 
@@ -10,13 +10,14 @@ $dwoo = new Dwoo();
 $data = array();
 
 $term = '';
-$result = Tools::searchDb("SELECT * FROM hosts WHERE name LIKE '%" . strtoupper($term) . "%'");
+$db = new Database();
+$result = $db->query("SELECT * FROM hosts WHERE name LIKE '%" . strtoupper($term) . "%'");
 
 $hosts = array();
 
-if ($result->num_rows > 0) {
+if (mysqli_num_rows($result) > 0) {
 	// output data of each row
-	while($row = $result->fetch_assoc()) {
+	while($row = mysqli_fetch_assoc($result)) {
 		$h = array();
 		$h['name'] = $row['name'];
 		$h['website'] = $row['website'];

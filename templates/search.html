@@ -11,7 +11,7 @@
 					<b>Maps: </b>
 					{foreach $val.maps map}
 						{if $map.series == $val.id}
-							<a href="video.php?teamA={$val.teamA}&teamB={$val.teamB}&bestof={$val.bestof}&event={$val.event}&host={$val.host}&date={$val.date}&num={$map.number}&url={$map.url}&comment={$val.comment}&game={$val.game}&id={$map.id}" target="blank">#{$map.number} </a>
+							<a href="video.php?id={$map.id}" target="blank">#{$map.number} </a>
 						{/if}
 					{/foreach}
 				</div>

@@ -1,5 +1,8 @@
 <?php
 include '../../include/Tools.php';
+include '../../include/Database.php';
+
+$db = new Database();
 
 $date = $_POST["date"];
 $bestof = $_POST["bestof"];
@@ -21,15 +24,15 @@ array_push($maps, $_POST["map9"]);
 array_push($maps, $_POST["map10"]);
 array_push($maps, $_POST["map11"]);
 
-Tools::searchDb("INSERT INTO series (date, bestof, host, event, teamA, teamB, comment) VALUES ('".$date."', '".$bestof."', '".$host."', '".$event."', '".$teamA."', '".$teamB."', '".$comment."')");
+$db->query("INSERT INTO series (date, bestof, host, event, teamA, teamB, comment) VALUES ('".$date."', '".$bestof."', '".$host."', '".$event."', '".$teamA."', '".$teamB."', '".$comment."')");
 
-$res = Tools::searchDb("SELECT * FROM series ORDER BY id DESC LIMIT 1");
-$row = $res->fetch_assoc();
+$res = $db->query("SELECT * FROM series ORDER BY id DESC LIMIT 1");
+$row = mysqli_fetch_assoc($res);
 $series = $row['id'];
 
 for ($i = 0; $i <= 10; $i++) {
 	$j = $i + 1;
-	if ($maps[$i] != null || $maps[$i] != "") Tools::searchDb("INSERT INTO maps (number, url, series) VALUES ('".$j."', '".$maps[$i]."', '".$series."')");
+	if ($maps[$i] != null || $maps[$i] != "") $db->query("INSERT INTO maps (number, url, series) VALUES ('".$j."', '".$maps[$i]."', '".$series."')");
 }			
 
 header('Location: ' . $_SERVER['HTTP_REFERER']);

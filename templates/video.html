@@ -1,7 +1,6 @@
 {extends "main.html"}
 
 {block "wrapper"}
-{auto_escape on}
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title"><b>{$map.host} {$map.event} - {$map.teamA} vs. {$map.teamB} // {$map.date} (BO{$map.bestof}) // {$map.comment}</b></h3>
@@ -27,5 +26,4 @@
         })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-{/auto_escape}
 {/block}
