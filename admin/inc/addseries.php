@@ -6,8 +6,9 @@ $db = new Database();
 
 $date = $_POST["date"];
 $bestof = $_POST["bestof"];
-$host = $_POST["host"];
-$event = $_POST["event"];
+$raw = explode(',', $_POST['event']);
+$host = $raw[0];
+$event = $raw[1];
 $teamA = $_POST["teamA"];
 $teamB = $_POST["teamB"];
 $comment = $_POST["comment"];

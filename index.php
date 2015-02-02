@@ -13,7 +13,7 @@ $data = array();
 // Setting to null doesn't show the notice.
 $notice = null;
 
-$sql = "SELECT * FROM maps WHERE id >= (SELECT FLOOR( MAX(id) * RAND()) FROM maps ) ORDER BY id LIMIT 1;";
+$sql = "SELECT * FROM maps ORDER BY RAND() LIMIT 1;";
 $db = new Database();
 $result = $db->query($sql);
 

@@ -3,27 +3,26 @@
 	<div class="input-group input-group-lg">
 		<input type="text" class="form-control" id="date" name="date" placeholder="YYYY-MM-DD...">
 		<input type="text" class="form-control" id="bestof" name="bestof" placeholder="Best Of...">
-		<select class="selectpicker" name="host" data-live-search="true" title="Host...">
+		<select class="selectpicker" name="event" data-width="null" data-live-search="true" title="Event...">
 			<?php
-				include '../include/Database.php'; 
+				include '../include/Database.php';
 				$db = new Database();
-				$hosts = $db->query("SELECT * FROM hosts");
-				if (mysqli_num_rows($hosts) > 0) {
-					// output data of each row
-					while($hRow = mysqli_fetch_assoc($hosts)) {
-						echo '<option value="'.$hRow['id'].'">'.$hRow['name'].'</option>';
-					}
-				}
-			?>
-		</select>
-		<select class="selectpicker" name="event" data-live-search="true" title="Event...">
-			<?php
-				$db = new Database();
+							
 				$events = $db->query("SELECT * FROM events");
 				if (mysqli_num_rows($events) > 0) {
 					// output data of each row
-					while($evRow = mysqli_fetch_assoc($events)) {
-						echo '<option value="'.$evRow['id'].'">'.$evRow['name'].'</option>';
+					while($row = mysqli_fetch_assoc($events)) {
+						$value = $row['host'] . "," . $row['id'];
+						$hostname = "";
+									
+						$hosts = $db->query("SELECT * FROM hosts WHERE id=" . $row['host']);
+						if (mysqli_num_rows($hosts) > 0) {
+							while($row2 = mysqli_fetch_assoc($hosts)) {
+								$hostname = $row2['name'];
+							}
+						}
+						$name = $hostname . " " . $row['name'];
+						echo '<option value="'.$value.'">'.$name.'</option>';
 					}
 				}
 			?>
