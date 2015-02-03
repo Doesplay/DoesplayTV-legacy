@@ -14,11 +14,13 @@ We've used these frameworks to build our system:
 * [Bootstrap Select] - little extension to Bootstrap for select fields
 * [Dwoo] - PHP5 templating engine
 * [Font Awesome] - icon usage
+* [eldarion-ajax] - AJAX built into Bootstrap
 
 [Twitter Bootstrap]:http://twitter.github.com/bootstrap/
 [Dwoo]:http://dwoo.org/
 [Bootstrap Select]:https://github.com/silviomoreto/bootstrap-select
 [Font Awesome]:http://fortawesome.github.io/Font-Awesome/
+[eldarion-ajax]:https://github.com/eldarion/eldarion-ajax
 
 [@Kairuxo]:http://twitter.com/Kairuxo
 [@aRiseHQ]:http://twitter.com/aRiseHQ
