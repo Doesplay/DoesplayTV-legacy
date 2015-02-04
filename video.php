@@ -10,9 +10,6 @@ $dwoo = new Dwoo();
 // Create some data
 $data = array();
 
-// Setting to null doesn't show the notice.
-$notice = null;
-
 $db = new Database();
 $map = array();
 
@@ -62,8 +59,6 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 $data['title'] = 'Map #'. $map['num'] . ' - ' . $map['teamA'] . ' vs. ' . $map['teamB'] . " - " . $map['host'] . " " . $map['event'];
-// content is the tag for the main content of the page.
-$data['notice'] = $notice;
 $data['map'] = $map;
  
 // Output the result ... 

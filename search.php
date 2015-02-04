@@ -9,9 +9,6 @@ $dwoo = new Dwoo();
 // Create some data
 $data = array();
 
-// Setting to null doesn't show the notice.
-$notice = null;
-
 $team = null;
 $host = null;
 $event = null;
@@ -77,9 +74,6 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 $data['title'] = 'CoD eSports VODs';
-// content is the tag for the main content of the page.
-$data['content'] = '';
-$data['notice'] = $notice;
 $data['series'] = $series;
 $data['maps'] = $maps;
 $data['fail'] = $fail;

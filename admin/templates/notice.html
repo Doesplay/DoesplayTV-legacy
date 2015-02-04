@@ -1,1 +1,35 @@
-<b>notice</b>
+<!-- Bootstrap Markdown -->
+<link href="css/bootstrap-markdown.min.css" rel="stylesheet">
+
+<?php
+	include '../include/Database.php';
+	$db = new Database();
+							
+	$notice = $db->query("SELECT * FROM info WHERE name='notice'");
+	if (mysqli_num_rows($notice) > 0) {
+		// output data of each row
+		while($row = mysqli_fetch_assoc($notice)) {
+			$content = $row['data'];
+			$enabled = $row['enabled'] == 1 ? 'true' : 'false';
+		}
+	}
+?>
+
+<h3>Set Notice</h3>
+<form class="form-horizontal" role="form" method="post" action="inc/setnotice.php">
+	<div class="input-group input-group-lg">
+		<textarea name="content" data-provide="markdown" rows="10"><?php echo $content; ?></textarea>
+		<label class="checkbox">
+			<input name="enable" type="checkbox" checked="<?php echo $enabled; ?>"> Enable? </input>
+		</label>
+	</div>
+	
+	<div class="input-group input-group-lg">
+		<span class="input-group-btn">
+			<button class="btn btn-default" type="submit">Submit</button>
+		</span>
+	</div>
+</form>
+
+<!-- Bootstrap Markdown -->
+<script src="js/bootstrap-markdown.js"></script>

@@ -15,12 +15,16 @@ We've used these frameworks to build our system:
 * [Dwoo] - PHP5 templating engine
 * [Font Awesome] - icon usage
 * [eldarion-ajax] - AJAX built into Bootstrap
+* [Parsedown] - Markdown parser for PHP
+* [Bootstrap Markdown] - Markdown editor for Bootstrap
 
 [Twitter Bootstrap]:http://twitter.github.com/bootstrap/
 [Dwoo]:http://dwoo.org/
 [Bootstrap Select]:https://github.com/silviomoreto/bootstrap-select
 [Font Awesome]:http://fortawesome.github.io/Font-Awesome/
 [eldarion-ajax]:https://github.com/eldarion/eldarion-ajax
+[Parsedown]:http://parsedown.org/
+[Bootstrap Markdown]:http://www.codingdrama.com/bootstrap-markdown/
 
 [@Kairuxo]:http://twitter.com/Kairuxo
 [@aRiseHQ]:http://twitter.com/aRiseHQ

@@ -28,11 +28,7 @@ if (mysqli_num_rows($result) > 0) {
 	echo "0 results";
 }
 
-// Setting to null doesn't show the notice.
-$notice = null;
-
 $data['title'] = 'Hosts';
-$data['notice'] = $notice;
 $data['hosts'] = $hosts;
  
 // Output the result ... 
