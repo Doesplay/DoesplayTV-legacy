@@ -5,4 +5,9 @@ class Tools {
 		return $id['v'];
 	}
 }
+
+class Levels {
+	const ADMIN = 0;
+	const EDITOR = 1;
+}
 ?>

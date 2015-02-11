@@ -71,9 +71,32 @@
 								</table>
 							</div>
 						</div>
-						
 					</div>
 				</div>
+				
+				{if $level == 0}
+				<div class="panel-group" id="accordion">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="fa fa-users fa-lg">
+								</span>Users</a>
+							</h4>
+						</div>
+						<div id="collapseThree" class="panel-collapse collapse in">
+							<div class="panel-body">
+								<table class="table">
+									<tr>
+										<td>
+											<i class="fa fa-user-plus fa-lg"></i><a href="adduser.php" class="ajax" data-replace-inner=".well">Add</a>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				{/if}
 			</div>
 			<div class="col-sm-9 col-md-9">
 				<div class="well" style="padding-top: 0px">

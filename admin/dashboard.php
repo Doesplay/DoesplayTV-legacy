@@ -1,7 +1,13 @@
 <?php
+session_start();
+
 // Include the main class, the rest will be automatically loaded
 include '../lib/dwooAutoload.php'; 
 include '../include/Tools.php';
+
+if (empty($_SESSION['user'])) {
+	die("Must login.");
+}
  
 // Create the controller, it is reusable and can render multiple templates
 $dwoo = new Dwoo(); 
@@ -10,8 +16,7 @@ $dwoo = new Dwoo();
 $data = array();
 
 $data['title'] = 'CoD eSports VODs';
-// content is the tag for the main content of the page.
-$data['content'] = '';
+$data['level'] = $_SESSION['user']['level'];
 
 // Output the result ... 
 $dwoo->output('templates/dashboard.html', $data);

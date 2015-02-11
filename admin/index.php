@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Include the main class, the rest will be automatically loaded
 include '../lib/dwooAutoload.php'; 
 include '../include/Tools.php';
