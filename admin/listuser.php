@@ -14,7 +14,7 @@ $dwoo = new Dwoo();
 $data = array();
 
 // Output the result ... 
-$h = $dwoo->get('templates/notice.html', $data);
+$h = $dwoo->get('templates/listuser.html', $data);
 
 $arr = array('html' => $h);
 echo json_encode($arr);

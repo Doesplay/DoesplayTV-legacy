@@ -1,8 +1,14 @@
+<script>
+	$('.selectpicker').selectpicker();
+</script>
+
 <h3>Add Series</h3>
 <form class="form-horizontal" role="form" method="post" action="inc/addseries.php">
 	<div class="input-group input-group-lg">
 		<input type="text" class="form-control" id="date" name="date" placeholder="YYYY-MM-DD...">
 		<input type="text" class="form-control" id="bestof" name="bestof" placeholder="Best Of...">
+	</div>
+	<div class="input-group input-group-lg">
 		<select class="selectpicker" name="event" data-width="null" data-live-search="true" title="Event...">
 			<?php
 				include '../include/Database.php';
@@ -27,6 +33,8 @@
 				}
 			?>
 		</select>
+	</div>
+	<div class="input-group input-group-lg">
 		<input type="text" class="form-control" id="teamA" name="teamA" placeholder="Team A...">
 		<input type="text" class="form-control" id="teamB" name="teamB" placeholder="Team B...">
 		<input type="text" class="form-control" id="comment" name="comment" placeholder="Comment...">

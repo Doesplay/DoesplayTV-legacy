@@ -1,0 +1,127 @@
+<script>
+//triggered when modal is about to be shown
+$(document).on('show.bs.modal', function(e) {
+	//get data-id attribute of the clicked element
+    var user = $(e.relatedTarget).data('user');
+
+    //populate the textbox
+    $(e.currentTarget).find('input[name="user"]').val(user);
+});
+
+$('.selectpicker').selectpicker();
+</script>
+
+<h3>Users</h3>
+<ul class="list-group">
+	<?php
+		include '../include/Database.php'; 
+		$db = new Database();
+		$users = $db->query("SELECT * FROM users");
+		if (mysqli_num_rows($users) > 0) {
+			// output data of each row
+			while($row = mysqli_fetch_assoc($users)) {
+				echo '<li class="list-group-item">' . $row['user'] . '
+						<span class="pull-right">
+							<button type="button" class="btn btn-default btn-xs" data-user="' . $row['user'] .'" data-toggle="modal" data-target="#levelModal">
+								<i class="fa fa-arrows-v" aria-hidden="true"></i>Level
+							</button>
+							<button type="button" class="btn btn-default btn-xs" data-user="' . $row['user'] .'" data-toggle="modal" data-target="#passwordModal">
+								<i class="fa fa-lock" aria-hidden="true"></i>Password
+							</button>
+							<button type="button" class="btn btn-default btn-xs" data-user="' . $row['user'] .'" data-toggle="modal" data-target="#deleteModal">
+								<i class="fa fa-user-times" aria-hidden="true"></i>Delete
+							</button>
+						</span>
+					</li>';
+			}
+		}
+	?>
+</ul>
+
+<!-- Level dialog -->
+<div class="modal fade" id="levelModal" tabindex="-1" role="dialog" aria-labelledby="levelModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+				<h4 class="modal-title" id="title">Change Level</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" role="form" method="post" action="inc/editlevel.php">
+					<div class="input-group">
+						<span class="input-group-addon" id="user-addon">User</span>
+						<input type="text" class="form-control" placeholder="Username" name="user">
+					</div>
+					<div class="input-group">
+						<select class="selectpicker" name="level" title="Level..." data-width="100%">
+							<option value="0">Admin</option>
+							<option value="1">Editor</option>
+						</select>
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="submit">Confirm?</button>
+						</span>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Okay!</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Password dialog -->
+<div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+				<h4 class="modal-title" id="title">Change Password</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" role="form" method="post" action="inc/editpassword.php">
+					<div class="input-group">
+						<span class="input-group-addon" id="user-addon">User</span>
+						<input type="text" class="form-control" placeholder="Username" name="user">
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon" id="pass-addon">Password</span>
+						<input type="text" class="form-control" placeholder="New Password" name="password">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="submit">Confirm?</button>
+						</span>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Okay!</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Delete dialog -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+				<h4 class="modal-title" id="title">Delete User</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" role="form" method="post" action="inc/editdelete.php">
+					<div class="input-group">
+						<span class="input-group-addon" id="user-addon">User</span>
+						<input type="text" class="form-control" placeholder="Username" name="user">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="submit">Confirm?</button>
+						</span>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Okay!</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-// Include the main class, the rest will be automatically loaded
-include '../lib/dwooAutoload.php'; 
-include '../include/Tools.php';
-
 if (empty($_SESSION['user'])) {
 	die("Must login.");
 }
+
+// Include the main class, the rest will be automatically loaded
+include '../lib/dwooAutoload.php'; 
+include '../include/Tools.php';
  
 // Create the controller, it is reusable and can render multiple templates
 $dwoo = new Dwoo(); 

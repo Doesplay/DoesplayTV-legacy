@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+if ($_SESSION['user']) {
+	header("Location: dashboard.php");
+}
+
 // Include the main class, the rest will be automatically loaded
 include '../lib/dwooAutoload.php'; 
 include '../include/Tools.php';

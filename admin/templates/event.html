@@ -1,7 +1,11 @@
+<script>
+	$('.selectpicker').selectpicker();
+</script>
+
 <h3>Add Event</h3>
 <form class="form-horizontal" role="form" method="post" action="inc/addevent.php">
 	<div class="input-group input-group-lg">
-		<select class="selectpicker" name="host" data-live-search="true" title="Host...">
+		<select class="selectpicker" name="host" data-width="null" data-live-search="true" title="Host...">
 			<?php
 				include '../include/Database.php'; 
 				$db = new Database();
@@ -14,7 +18,7 @@
 				}
 			?>
 		</select>
-		<select class="selectpicker" name="game" data-live-search="true" title="Game...">
+		<select class="selectpicker" name="game" data-width="null" data-live-search="true" title="Game...">
 			<?php
 				$db = new Database();
 				$games = $db->query("SELECT * FROM games");
@@ -26,8 +30,9 @@
 				}
 			?>
 		</select>
-		<input type="text" class="form-control" id="name" name="name" placeholder="Name...">
-		
+	</div>
+	<div class="input-group input-group-lg">
+		<input type="text" class="form-control" width="100%" id="name" name="name" placeholder="Name...">
 	</div>
 	
 	<div class="input-group input-group-lg">
