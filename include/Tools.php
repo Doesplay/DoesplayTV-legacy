@@ -6,12 +6,12 @@ class Tools {
 	}
 	
 	function isStreamOnline($channel) {
-		$request = json_decode(@file_get_contents('https://api.twitch.tv/kraken/streams/' . $channel));
+		$request = json_decode(@file_get_contents('https://api.twitch.tv/kraken/streams/' . $channel . "?client_id=doesplaytv"));
 		return (! is_null($request->stream)) ? TRUE : FALSE;
 	}
 
 	function getStreamTitle($channel) {
-		$request = json_decode(@file_get_contents('https://api.twitch.tv/kraken/channels/' . $channel));
+		$request = json_decode(@file_get_contents('https://api.twitch.tv/kraken/channels/' . $channel . "?client_id=doesplaytv"));
 		return $request->status;
 	}
 }
