@@ -15,7 +15,7 @@ $dwoo = new Dwoo();
 // Create some data
 $data = array();
 
-$data['title'] = 'CoD eSports VODs';
+$data['title'] = 'dpTV Admin';
 // content is the tag for the main content of the page.
 $data['content'] = '';
 

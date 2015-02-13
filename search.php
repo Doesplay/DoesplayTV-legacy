@@ -73,7 +73,7 @@ if (mysqli_num_rows($result) > 0) {
 	$fail = 1;
 }
 
-$data['title'] = 'CoD eSports VODs';
+$data['title'] = 'Doesplay TV';
 $data['series'] = $series;
 $data['maps'] = $maps;
 $data['fail'] = $fail;

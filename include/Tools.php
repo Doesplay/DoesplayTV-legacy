@@ -4,6 +4,16 @@ class Tools {
 		parse_str(parse_url($url, PHP_URL_QUERY), $id);
 		return $id['v'];
 	}
+	
+	function isStreamOnline($channel) {
+		$request = json_decode(@file_get_contents('https://api.twitch.tv/kraken/streams/' . $channel));
+		return (! is_null($request->stream)) ? TRUE : FALSE;
+	}
+
+	function getStreamTitle($channel) {
+		$request = json_decode(@file_get_contents('https://api.twitch.tv/kraken/channels/' . $channel));
+		return $request->status;
+	}
 }
 
 class Levels {

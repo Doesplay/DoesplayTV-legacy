@@ -37,6 +37,21 @@
 				</div>
 			</form>
 		</div>
+		{if $online == true}
+			<div class="col-md-6 col-md-offset-3">
+				</br>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><b>{auto_escape on}{$stream}{/auto_escape}</b></h3>
+					</div>
+					<div class="panel-body">
+						<div class="embed-responsive embed-responsive-16by9">
+							<iframe class="embed-responsive-item" src="http://www.twitch.tv/{$channel}/embed" frameborder="0" scrolling="no"></iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+		{/if}
 		<div class="col-md-6 col-md-offset-3">
 			</br>
 			<div class="panel panel-default">

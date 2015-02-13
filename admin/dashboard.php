@@ -15,7 +15,7 @@ $dwoo = new Dwoo();
 // Create some data
 $data = array();
 
-$data['title'] = 'CoD eSports VODs';
+$data['title'] = 'dpTV Admin';
 $data['level'] = $_SESSION['user']['level'];
 
 // Output the result ... 

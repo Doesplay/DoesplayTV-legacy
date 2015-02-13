@@ -42,9 +42,17 @@ if (mysqli_num_rows($result) > 0) {
 	}
 }
 
+$channel = "doesplay"; // temp until admin panel setting is added
+$online = Tools::isStreamOnline($channel);
+if ($online) {
+	$data['stream'] = Tools::getStreamTitle($channel);
+}
+$data['channel'] = $channel;
+$data['online'] = $online;
+
 $url = "https://www.youtube.com/embed/" . Tools::getVideoId($longurl);
 
-$data['title'] = 'CoD eSports VODs';
+$data['title'] = 'Doesplay TV';
 // content is the tag for the main content of the page.
 $data['content'] = '';
 $data['notice'] = $notice;
