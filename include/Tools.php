@@ -19,7 +19,9 @@ class Tools {
 	
 	function addMessage($user, $message) {
 		$db = new Database();
-		$sql = "INSERT INTO logs (user, message) VALUES ('".$user."', '".$message."')";
+		date_default_timezone_set('Pacific/Auckland');
+		$time = date("Y-m-d H:i:s");
+		$sql = "INSERT INTO logs (date, user, message) VALUES ('".$time."', '".$user."', '".$message."')";
 		$db->query($sql);
 	}
 }
