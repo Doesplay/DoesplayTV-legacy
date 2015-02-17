@@ -1,6 +1,7 @@
 <?php
+session_start();
+
 include '../../include/Tools.php';
-include '../../include/Database.php';
 
 $content = $_POST["content"];
 $enable = $_POST["enable"];
@@ -16,6 +17,8 @@ $sql = "UPDATE info
 		WHERE name='notice';";
 
 $db->query($sql);
+
+Tools::addMessage($_SESSION['user']['user'], "edited notice: " . $content);
 
 header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

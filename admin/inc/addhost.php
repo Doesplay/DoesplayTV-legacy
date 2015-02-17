@@ -1,6 +1,7 @@
 <?php
+session_start();
+
 include '../../include/Tools.php';
-include '../../include/Database.php';
 
 $name = $_POST["name"];
 $website = $_POST["website"];
@@ -11,6 +12,8 @@ $sql = "INSERT INTO hosts (name, website, region)
 VALUES ('".$name."', '".$website."', '".$region."')";
 
 $db->query($sql);
+
+Tools::addMessage($_SESSION['user']['user'], "added host: " . $name);
 
 header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

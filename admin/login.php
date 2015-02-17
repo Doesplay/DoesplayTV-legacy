@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include '../include/Database.php';
+include '../include/Tools.php';
 
 $ok = false;
 

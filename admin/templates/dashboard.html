@@ -30,11 +30,13 @@
 											<i class="fa fa-home fa-lg"></i><a href="dashboard.php">Home</a>
 										</td>
 									</tr>
+									{if $level == 0}
 									<tr>
 										<td>
 											<i class="fa fa-exclamation-triangle fa-lg"></i><a href="notice.php" class="ajax" data-replace-inner=".well">Notice</a>
 										</td>
 									</tr>
+									{/if}
 								</table>
 							</div>
 						</div>

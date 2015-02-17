@@ -1,6 +1,7 @@
 <?php
+session_start();
+
 include '../../include/Tools.php';
-include '../../include/Database.php';
 
 $name = $_POST["user"];
 $level = $_POST["level"];
@@ -11,6 +12,9 @@ $sql = "UPDATE users
 		WHERE user='" . $name . "';";
 		
 $db->query($sql);
+
+$content = $name . " -> " . $level;
+Tools::addMessage($_SESSION['user']['user'], "edited user level: " . $content);
 
 header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

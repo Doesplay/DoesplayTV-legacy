@@ -1,6 +1,7 @@
 <?php
+session_start();
+
 include '../../include/Tools.php';
-include '../../include/Database.php';
 
 $db = new Database();
 
@@ -34,7 +35,10 @@ $series = $row['id'];
 for ($i = 0; $i <= 10; $i++) {
 	$j = $i + 1;
 	if ($maps[$i] != null || $maps[$i] != "") $db->query("INSERT INTO maps (number, url, series) VALUES ('".$j."', '".$maps[$i]."', '".$series."')");
-}			
+}
+
+$content = $teamA . " vs. " . $teamB . " - " . $date;
+Tools::addMessage($_SESSION['user']['user'], "added series: " . $content);
 
 header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

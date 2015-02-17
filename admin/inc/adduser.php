@@ -1,6 +1,7 @@
 <?php
+session_start();
+
 include '../../include/Tools.php';
-include '../../include/Database.php';
 
 $name = $_POST["name"];
 $password = $_POST["password"];
@@ -26,6 +27,8 @@ if (mysqli_num_rows($res) > 0) {
 			VALUES ('".$name."', '".$pass."', '".$salt."', '".$level."')";
 			
 	$db->query($sql);
+	
+	Tools::addMessage($_SESSION['user']['user'], "added user: " . $name);
 }
 
 header('Location: ' . $_SERVER['HTTP_REFERER']);

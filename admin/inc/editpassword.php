@@ -1,6 +1,5 @@
 <?php
 include '../../include/Tools.php';
-include '../../include/Database.php';
 
 $user = $_POST["user"];
 $password = $_POST["password"];
@@ -17,6 +16,8 @@ $sql = "UPDATE users
 		SET password='" . $pass . "', salt='" . $salt . "'
 		WHERE user='" . $user . "';";
 $db->query($sql);
+
+Tools::addMessage($_SESSION['user']['user'], "edited user password: " . $user);
 
 header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

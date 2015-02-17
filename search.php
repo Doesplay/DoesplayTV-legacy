@@ -1,7 +1,7 @@
 <?php
 // Include the main class, the rest will be automatically loaded
 include 'lib/dwooAutoload.php'; 
-include 'include/Database.php';
+include 'include/Tools.php';
  
 // Create the controller, it is reusable and can render multiple templates
 $dwoo = new Dwoo(); 
