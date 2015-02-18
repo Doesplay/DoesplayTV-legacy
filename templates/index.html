@@ -1,69 +1,69 @@
 {extends "main.html"}
 
 {block "wrapper"}
-	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
-			<form class="form-horizontal" role="form" method="post" action="search.php">
-				<div class="input-group input-group-lg">
-					<select class="selectpicker" name="event" data-width="null" data-live-search="true" title="Event..." data-size="5">
-						<?php
-							$db = new Database();
-							
-							$events = $db->query("SELECT * FROM events");
-							if (mysqli_num_rows($events) > 0) {
-								// output data of each row
-								while($row = mysqli_fetch_assoc($events)) {
-									$value = $row['host'] . "," . $row['id'];
-									$hostname = "";
-									
-									$hosts = $db->query("SELECT * FROM hosts WHERE id=" . $row['host']);
-									if (mysqli_num_rows($hosts) > 0) {
-										while($row2 = mysqli_fetch_assoc($hosts)) {
-											$hostname = $row2['name'];
-										}
-									}
-									$name = $hostname . " " . $row['name'];
-									echo '<option value="'.$value.'">'.$name.'</option>';
-								}
-							}
-						?>
-					</select>
-				</div>
-				<div class="input-group input-group-lg">
-					<input type="text" class="form-control" id="team" name="team" placeholder="Team...">
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form class="form-horizontal" role="form" method="post" action="search.php">
+            <div class="input-group input-group-lg">
+                <select class="selectpicker" name="event" data-width="null" data-live-search="true" title="Event..."
+                        data-size="5">
+                    <?php
+                        $db = new Database();
+						$events = $db->query("SELECT * FROM events");
+                        if (mysqli_num_rows($events) > 0) {
+                            while($row = mysqli_fetch_assoc($events)) {
+                                $value = $row['host'] . "," . $row['id'];
+                                $hostname = "";
+
+                                $hosts = $db->query("SELECT * FROM hosts WHERE id=" . $row['host']);
+                                if (mysqli_num_rows($hosts) > 0) {
+                                    while($row2 = mysqli_fetch_assoc($hosts)) {
+                                        $hostname = $row2['name'];
+                                    }
+                                }
+                                $name = $hostname . " " . $row['name'];
+                                echo '<option value="'.$value.'">'.$name.'</option>';
+                            }
+                        }
+                    ?>
+                </select>
+            </div>
+            <div class="input-group input-group-lg">
+                <input type="text" class="form-control" id="team" name="team" placeholder="Team...">
 					<span class="input-group-btn">
 						<button class="btn btn-default" type="submit">Search</button>
 					</span>
-				</div>
-			</form>
-		</div>
-		{if $online == true}
-			<div class="col-md-6 col-md-offset-3">
-				</br>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title"><b>{auto_escape on}{$stream}{/auto_escape}</b></h3>
-					</div>
-					<div class="panel-body">
-						<div class="embed-responsive embed-responsive-16by9">
-							<iframe class="embed-responsive-item" src="http://www.twitch.tv/{$channel}/embed" frameborder="0" scrolling="no"></iframe>
-						</div>
-					</div>
-				</div>
-			</div>
-		{/if}
-		<div class="col-md-6 col-md-offset-3">
-			</br>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title"><b>Random VOD</b></h3>
-				</div>
-				<div class="panel-body">
-					<div class="embed-responsive embed-responsive-16by9">
-						<iframe class="embed-responsive-item" src="{$randommap}"></iframe>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+            </div>
+        </form>
+    </div>
+    {if $online == true}
+    <div class="col-md-6 col-md-offset-3">
+        </br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><b>{auto_escape on}{$stream}{/auto_escape}</b></h3>
+            </div>
+            <div class="panel-body">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="http://www.twitch.tv/{$channel}/embed" frameborder="0"
+                            scrolling="no"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    {/if}
+    <div class="col-md-6 col-md-offset-3">
+        </br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><b>Random VOD</b></h3>
+            </div>
+            <div class="panel-body">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="{$randommap}"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {/block}

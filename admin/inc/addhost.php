@@ -9,7 +9,7 @@ $region = $_POST["region"];
 $db = new Database();
 
 $sql = "INSERT INTO hosts (name, website, region)
-VALUES ('".$name."', '".$website."', '".$region."')";
+VALUES ('" . $name . "', '" . $website . "', '" . $region . "')";
 
 $db->query($sql);
 

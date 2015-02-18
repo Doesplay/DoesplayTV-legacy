@@ -2,16 +2,16 @@
 session_start();
 
 if ($_SESSION['user']) {
-	header("Location: dashboard.php");
+    header("Location: dashboard.php");
 }
 
 // Include the main class, the rest will be automatically loaded
-include '../lib/dwooAutoload.php'; 
+include '../lib/dwooAutoload.php';
 include '../include/Tools.php';
- 
+
 // Create the controller, it is reusable and can render multiple templates
-$dwoo = new Dwoo(); 
- 
+$dwoo = new Dwoo();
+
 // Create some data
 $data = array();
 

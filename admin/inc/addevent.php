@@ -9,9 +9,9 @@ $game = $_POST["game"];
 $db = new Database();
 
 $db->query("INSERT INTO events (host, name, game)
-				VALUES ('".$host."', '".$name."', '".$game."')");
-				
+				VALUES ('" . $host . "', '" . $name . "', '" . $game . "')");
+
 Tools::addMessage($_SESSION['user']['user'], "added event: " . $name);
-				
+
 header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

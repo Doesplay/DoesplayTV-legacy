@@ -1,12 +1,12 @@
 <?php
 // Include the main class, the rest will be automatically loaded
-include 'lib/dwooAutoload.php'; 
+include 'lib/dwooAutoload.php';
 include 'include/Tools.php';
 include 'include/Parsedown.php';
- 
+
 // Create the controller, it is reusable and can render multiple templates
-$dwoo = new Dwoo(); 
- 
+$dwoo = new Dwoo();
+
 // Create some data
 $data = array();
 
@@ -21,10 +21,10 @@ $notice = null;
 $sql = "SELECT * FROM info WHERE name='notice' LIMIT 1;";
 $result = $db->query($sql);
 if (mysqli_num_rows($result) > 0) {
-	// output data of each row
-	while($row = mysqli_fetch_assoc($result)) {
-		if ($row['enabled'] == 1) $notice = $pd->text($row['data']);
-	}
+    // output data of each row
+    while ($row = mysqli_fetch_assoc($result)) {
+        if ($row['enabled'] == 1) $notice = $pd->text($row['data']);
+    }
 }
 
 // Reusing vars? k.
@@ -35,16 +35,16 @@ $result = $db->query($sql);
 $url = "https://www.youtube.com/embed/-w-58hQ9dLk";
 
 if (mysqli_num_rows($result) > 0) {
-	// output data of each row
-	while($row = mysqli_fetch_assoc($result)) {
-		$longurl = $row['url'];
-	}
+    // output data of each row
+    while ($row = mysqli_fetch_assoc($result)) {
+        $longurl = $row['url'];
+    }
 }
 
 $channel = "doesplay"; // temp until admin panel setting is added
 $online = Tools::isStreamOnline($channel);
 if ($online) {
-	$data['stream'] = Tools::getStreamTitle($channel);
+    $data['stream'] = Tools::getStreamTitle($channel);
 }
 $data['channel'] = $channel;
 $data['online'] = $online;

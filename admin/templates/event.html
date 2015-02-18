@@ -1,43 +1,41 @@
 <script>
-	$('.selectpicker').selectpicker();
+    $('.selectpicker').selectpicker();
 </script>
 
 <h3>Add Event</h3>
 <form class="form-horizontal" role="form" method="post" action="inc/addevent.php">
-	<div class="input-group input-group-lg">
-		<select class="selectpicker" name="host" data-width="null" data-live-search="true" title="Host...">
-			<?php
+    <div class="input-group input-group-lg">
+        <select class="selectpicker" name="host" data-width="null" data-live-search="true" title="Host...">
+            <?php
 				include '../include/Database.php'; 
 				$db = new Database();
 				$hosts = $db->query("SELECT * FROM hosts");
-				if (mysqli_num_rows($hosts) > 0) {
-					// output data of each row
-					while($hRow = mysqli_fetch_assoc($hosts)) {
-						echo '<option value="'.$hRow['id'].'">'.$hRow['name'].'</option>';
-					}
-				}
-			?>
-		</select>
-		<select class="selectpicker" name="game" data-width="null" data-live-search="true" title="Game...">
-			<?php
+                if (mysqli_num_rows($hosts) > 0) {
+                    while($hRow = mysqli_fetch_assoc($hosts)) {
+                        echo '<option value="'.$hRow['id'].'">'.$hRow['name'].'</option>';
+                    }
+                }
+            ?>
+        </select>
+        <select class="selectpicker" name="game" data-width="null" data-live-search="true" title="Game...">
+            <?php
 				$db = new Database();
 				$games = $db->query("SELECT * FROM games");
-				if (mysqli_num_rows($games) > 0) {
-					// output data of each row
-					while($gRow = mysqli_fetch_assoc($games)) {
-						echo '<option value="'.$gRow['name'].'">'.$gRow['friendly'].'</option>';
-					}
-				}
-			?>
-		</select>
-	</div>
-	<div class="input-group input-group-lg">
-		<input type="text" class="form-control" width="100%" id="name" name="name" placeholder="Name...">
-	</div>
-	
-	<div class="input-group input-group-lg">
+                if (mysqli_num_rows($games) > 0) {
+                    while($gRow = mysqli_fetch_assoc($games)) {
+                        echo '<option value="'.$gRow['name'].'">'.$gRow['friendly'].'</option>';
+                    }
+                }
+            ?>
+        </select>
+    </div>
+    <div class="input-group input-group-lg">
+        <input type="text" class="form-control" width="100%" id="name" name="name" placeholder="Name...">
+    </div>
+
+    <div class="input-group input-group-lg">
 		<span class="input-group-btn">
 			<button class="btn btn-default" type="submit">Submit</button>
 		</span>
-	</div>
+    </div>
 </form>

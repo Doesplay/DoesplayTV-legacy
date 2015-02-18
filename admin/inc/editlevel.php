@@ -10,7 +10,7 @@ $db = new Database();
 $sql = "UPDATE users
 		SET level=" . $level . " 
 		WHERE user='" . $name . "';";
-		
+
 $db->query($sql);
 
 $content = $name . " -> " . $level;

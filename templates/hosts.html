@@ -1,9 +1,9 @@
 {extends "main.html"}
 
 {block "wrapper"}
-	<div class="list-group">
-		{foreach $hosts val}
-			<a href="{$val.website}" class="list-group-item">{$val.name} ({$val.region})</a>
-		{/foreach}
-	</div>
+<div class="list-group">
+    {foreach $hosts val}
+    <a href="{$val.website}" class="list-group-item">{$val.name} ({$val.region})</a>
+    {/foreach}
+</div>
 {/block}

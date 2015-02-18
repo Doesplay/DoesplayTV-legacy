@@ -2,14 +2,14 @@
 session_start();
 
 if (empty($_SESSION['user'])) {
-	die("Must login.");
+    die("Must login.");
 }
 
-include '../lib/dwooAutoload.php'; 
- 
+include '../lib/dwooAutoload.php';
+
 // Create the controller, it is reusable and can render multiple templates
-$dwoo = new Dwoo(); 
- 
+$dwoo = new Dwoo();
+
 // Create some data
 $data = array();
 

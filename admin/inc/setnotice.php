@@ -6,9 +6,9 @@ include '../../include/Tools.php';
 $content = $_POST["content"];
 $enable = $_POST["enable"];
 if ($enable == "on") {
-	$enable = 1;
+    $enable = 1;
 } else {
-	$enable = 0;
+    $enable = 0;
 }
 $db = new Database();
 
