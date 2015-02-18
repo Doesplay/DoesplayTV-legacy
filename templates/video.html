@@ -3,7 +3,22 @@
 {block "wrapper"}
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><b>{$map.host} {$map.event} - {$map.teamA} vs. {$map.teamB} // {$map.date} (BO{$map.bestof}) // {$map.comment}</b></h3>
+			<nav>
+				<ul style="margin-top:-6px;" class="pagination pagination-sm pull-right">
+					{foreach $maps m}
+						<li><a href="video.php?id={$m.id}">{$m.number}</a></li>
+					{/foreach}
+				</ul>
+			</nav>
+			<span style="margin-right:5px;" class="label label-info pull-right">Maps</span>
+			<div class="panel-title">
+				<b><ol style="margin:-10px;" class="breadcrumb">
+					<li>{$map.host} {$map.event}</li>
+					<li>{$map.teamA} vs. {$map.teamB}</li>
+					<li>{$map.date}</li>
+					<li>{$map.comment}</li>
+				</ol></b>
+			</div>
 		</div>
 		<div class="panel-body">
 			<div class="embed-responsive embed-responsive-16by9">

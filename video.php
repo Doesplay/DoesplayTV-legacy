@@ -57,6 +57,18 @@ if (mysqli_num_rows($result) > 0) {
 	die("Map doesn't exist! ):");
 }
 
+$maps = array();
+$findMaps = $db->query("SELECT * FROM maps WHERE series='".$seriesId."'");
+while($row4 = mysqli_fetch_assoc($findMaps)) {
+	$m = array();
+	$m['number'] = $row4['number'];
+	$m['url'] = $map['url'] = 'https://www.youtube.com/embed/' . Tools::getVideoId($row4['url']);
+	$m['id'] = $row4['id'];
+	$m['series'] = $row4['series'];
+	array_push($maps, $m);
+}
+$data['maps'] = $maps;
+	
 $data['title'] = 'Map #'. $map['num'] . ' - ' . $map['teamA'] . ' vs. ' . $map['teamB'] . " - " . $map['host'] . " " . $map['event'];
 $data['map'] = $map;
  
