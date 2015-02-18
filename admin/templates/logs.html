@@ -1,0 +1,31 @@
+<h3>Logs</h3>
+<ul class="list-group">
+	<?php
+		include '../include/Database.php'; 
+		$db = new Database();
+		$users = $db->query("SELECT * FROM logs");
+		if (mysqli_num_rows($users) > 0) {
+			// output data of each row
+			while($row = mysqli_fetch_assoc($users)) {
+			$level = "";
+				$user = $db->query("SELECT * FROM users WHERE user='".$row['user']."'");
+				if (mysqli_num_rows($user) > 0) {
+					// output data of each row
+					while($row2 = mysqli_fetch_assoc($user)) {
+						switch ($row2['level']) {
+							case 0:
+								$level = "danger"; //admin
+								break;
+							case 1:
+								$level = "primary"; //editor
+								break;
+						}
+					}
+				}
+				echo '<li class="list-group-item">' . $row['message'] . '
+						<span class="label label-' . $level .' pull-right">' . $row['user'] . '</span>
+					</li>';
+			}
+		}
+	?>
+</ul>
