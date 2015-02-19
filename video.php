@@ -62,7 +62,7 @@ $findMaps = $db->query("SELECT * FROM maps WHERE series='" . $seriesId . "'");
 while ($row4 = mysqli_fetch_assoc($findMaps)) {
     $m = array();
     $m['number'] = $row4['number'];
-    $m['url'] = $map['url'] = 'https://www.youtube.com/embed/' . Tools::getVideoId($row4['url']);
+    $m['url'] = 'https://www.youtube.com/embed/' . Tools::getVideoId($row4['url']);
     $m['id'] = $row4['id'];
     $m['series'] = $row4['series'];
     array_push($maps, $m);
