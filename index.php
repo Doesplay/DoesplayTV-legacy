@@ -30,30 +30,30 @@ if (mysqli_num_rows($result) > 0) {
 // Reusing vars? k.
 $sql = "SELECT * FROM maps ORDER BY RAND() LIMIT 1;";
 $result = $db->query($sql);
-
 // Random map URL
 $url = "https://www.youtube.com/embed/-w-58hQ9dLk";
 
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
     while ($row = mysqli_fetch_assoc($result)) {
+        // now we have the random map
         $longurl = $row['url'];
     }
 }
-
-$channel = "doesplay"; // temp until admin panel setting is added
-$online = Tools::isStreamOnline($channel);
-if ($online) {
-    $data['stream'] = Tools::getStreamTitle($channel);
-}
-$data['channel'] = $channel;
-$data['online'] = $online;
-
+// actual URL for embedding
 $url = "https://www.youtube.com/embed/" . Tools::getVideoId($longurl);
 
+$channel = "doesplay"; // temp until admin panel setting is added
+// check if channel is online
+$online = Tools::isStreamOnline($channel);
+if ($online) {
+    // if it is, grab the title
+    $data['stream'] = Tools::getStreamTitle($channel);
+}
+// pass variables to template
+$data['channel'] = $channel;
+$data['online'] = $online;
 $data['title'] = 'Doesplay TV';
-// content is the tag for the main content of the page.
-$data['content'] = '';
 $data['notice'] = $notice;
 $data['randommap'] = $url;
 

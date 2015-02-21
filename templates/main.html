@@ -51,7 +51,6 @@
                 <li><a href="http://doesplay.com">Doesplay</a></li>
             </ul>
         </div>
-        <!--/.nav-collapse -->
     </div>
 </nav>
 
@@ -59,17 +58,8 @@
     {if isset($notice)}
     <div class="alert alert-info" role="alert">{$notice}</div>
     {/if}
-    {block "wrapper"}
-    {$content}
-    {/block}
+    {block "wrapper"}{/block}
 </div>
-<!-- /container -->
-
-<footer class="footer">
-    <div class="container">
-        <p class="text-muted">© Team aRise, Doesplay 2015</p>
-    </div>
-</footer>
 
 <!-- About dialog -->
 <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModal" aria-hidden="true">
