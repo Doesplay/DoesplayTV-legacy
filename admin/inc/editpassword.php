@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include '../../include/Tools.php';
 
 $user = $_POST["user"];

@@ -2,16 +2,24 @@
 
 {block "wrapper"}
 {if $fail == 0}
-{foreach $series val}
+{foreach $serieslist series}
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><img src="img/{$val.game}.png" height="40px" width="40px"/> {$val.host} {$val.event} -
-            {$val.teamA} vs. {$val.teamB} // {$val.date} (BO{$val.bestof}) // {$val.comment}</h3>
+        <div class="panel-title">
+            <b>
+                <ol style="margin:-10px;" class="breadcrumb">
+                    <li><img src="img/{$series.game}.png" height="40px" width="40px"/> {$series.host} {$series.event}</li>
+                    <li>{$series.teamA} vs. {$series.teamB}</li>
+                    <li>{$series.date}</li>
+                    <li>{$series.comment}</li>
+                </ol>
+            </b>
+        </div>
     </div>
     <div class="panel-body">
         <b>Maps: </b>
-        {foreach $val.maps map}
-        {if $map.series == $val.id}
+        {foreach $series.maps map}
+        {if $map.series == $series.id}
         <a href="video.php?id={$map.id}">#{$map.number} </a>
         {/if}
         {/foreach}

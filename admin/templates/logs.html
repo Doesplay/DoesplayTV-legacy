@@ -1,7 +1,7 @@
 <h3>Logs</h3>
 <ul class="list-group">
 	<?php
-		include '../include/Database.php'; 
+		include '../include/Tools.php';
 		$db = new Database();
 		$users = $db->query("SELECT * FROM logs ORDER BY id DESC");
 		if (mysqli_num_rows($users) > 0) {
@@ -22,7 +22,8 @@
 						}
 					}
 				}
-				echo '<li class="list-group-item">' . $row['message'] . '
+                $color = Tools::getLogColor($row['message']);
+				echo '<li class="list-group-item list-group-item-'. $color .'">' . $row['message'] . '
 						<span class="label label-' . $level .' pull-right">' . $row['user'] . '</span>
 					</li>';
 			}

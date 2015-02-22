@@ -74,7 +74,7 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 $data['title'] = 'Doesplay TV';
-$data['series'] = $series;
+$data['serieslist'] = $series;
 $data['maps'] = $maps;
 $data['fail'] = $fail;
 

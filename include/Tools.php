@@ -29,6 +29,28 @@ class Tools
         $sql = "INSERT INTO logs (date, user, message) VALUES ('" . $time . "', '" . $user . "', '" . $message . "')";
         $db->query($sql);
     }
+
+    function contains($contains, $string)
+    {
+        return strpos($string, $contains) !== false;
+    }
+
+    function getLogColor($message)
+    {
+        // green = success
+        // blue = info
+        // yellow = warning
+        // red = danger
+        if (self::contains("edited user", $message) || self::contains("deleted", $message)) {
+            return "danger";
+        } else if (self::contains("added", $message)) {
+            return "success";
+        } else if (self::contains("edited notice", $message)) {
+            return "warning";
+        } else if (self::contains("edited ", $message)) {
+            return "info";
+        }
+    }
 }
 
 class Levels
