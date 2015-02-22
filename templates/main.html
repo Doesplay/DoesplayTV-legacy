@@ -11,13 +11,13 @@
     <link rel="icon" href="img/favicon.ico">
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link href="css/navbar-fixed-top.css" rel="stylesheet">
     <link href="css/sticky-footer-navbar.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Bootstrap Select -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.4/css/bootstrap-select.min.css" rel="stylesheet">
     <!-- Stops the page shifting a little when modals open -->
     <style>
         body.modal-open {
@@ -45,10 +45,22 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="#about" data-toggle="modal" data-target="#aboutModal">About</a></li>
-                <li><a href="#contact" data-toggle="modal" data-target="#contactModal">Contact</a></li>
-                <li><a href="http://teamarise.net">aRise</a></li>
-                <li><a href="http://doesplay.com">Doesplay</a></li>
+                <li><a href="hosts.php">Hosts</a></li>
+                <li><a href="events.php">Events</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#about" data-toggle="modal" data-target="#aboutModal">
+                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About Us</a></li>
+                        <li><a href="#contact" data-toggle="modal" data-target="#contactModal">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Contact</a></li>
+                        <li class="divider"></li>
+                        <li><a href="http://teamarise.net">
+                            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> aRise</a></li>
+                        <li><a href="http://doesplay.com">
+                            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Doesplay</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
@@ -116,8 +128,8 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- Bootstrap Select -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.4/js/bootstrap-select.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>

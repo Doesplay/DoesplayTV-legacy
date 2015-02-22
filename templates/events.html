@@ -1,0 +1,37 @@
+{extends "main.html"}
+
+{block "wrapper"}
+{if listall == true}
+<ul class="list-group">
+{foreach $eventlist event}
+<a href="events.php?id={$event.id}" class="list-group-item">
+    <img src="img/{$event.game}.png" height="40px" width="40px"/> {$event.host} {$event.name}
+</a>
+{/foreach}
+</ul>
+{/if}
+
+{if $fail == false}
+{foreach $series s}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><img src="img/{$s.game}.png" height="40px" width="40px"/>
+
+        </h3>
+    </div>
+    <div class="panel-body">
+
+    </div>
+</div>
+{/foreach}
+{else}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">No results!</h3>
+    </div>
+    <div class="panel-body">
+        <b>No event found.</b>
+    </div>
+</div>
+{/if}
+{/block}

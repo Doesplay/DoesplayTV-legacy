@@ -28,7 +28,7 @@ if (mysqli_num_rows($result) > 0) {
     echo "0 results";
 }
 
-$data['title'] = 'dpTV: Host List';
+$data['title'] = 'Doesplay TV: Hosts';
 $data['hosts'] = $hosts;
 
 // Output the result ... 
