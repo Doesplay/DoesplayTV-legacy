@@ -6,10 +6,10 @@
         <form class="form-horizontal" role="form" method="post" action="search.php">
             <div class="input-group input-group-lg">
                 <select class="selectpicker" name="event" data-width="null" data-live-search="true" title="Pick an event"
-                        data-size="5">
+                        data-size="15">
                     <?php
                         $db = new Database();
-						$events = $db->query("SELECT * FROM events");
+						$events = $db->query("SELECT * FROM events ORDER BY host ASC");
                         if (mysqli_num_rows($events) > 0) {
                             while($row = mysqli_fetch_assoc($events)) {
                                 $value = $row['host'] . "," . $row['id'];
