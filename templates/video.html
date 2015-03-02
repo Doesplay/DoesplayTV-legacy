@@ -1,50 +1,136 @@
 {extends "main.html"}
 
-{block "wrapper"}
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <nav>
-            <ul style="margin-top:-6px;" class="pagination pagination-sm pull-right">
-                {foreach $maps m}
-                <li><a href="video.php?id={$m.id}">{$m.number}</a></li>
-                {/foreach}
-            </ul>
-        </nav>
-        <span style="margin-right:5px;" class="label label-info pull-right">Maps</span>
+{block "rightblock"}
+<style>
+    #sidebar .glyphicon {
+        margin-right: 10px;
+    }
 
-        <div class="panel-title">
-            <b>
-                <ol style="margin:-10px;" class="breadcrumb">
-                    <li>{$map.host} {$map.event}</li>
-                    <li>{$map.teamA} vs. {$map.teamB}</li>
-                    <li>{$map.date}</li>
-                    <li>{$map.comment}</li>
-                </ol>
-            </b>
+    #sidebar .fa {
+        margin-right: 10px;
+    }
+
+    #sidebar .panel-body {
+        padding: 0px;
+    }
+
+    #sidebar .panel-body table tr td {
+        padding-left: 15px
+    }
+
+    #sidebar .panel-body .table {
+        margin-bottom: 0px;
+    }
+</style>
+<div id="sidebar">
+    <div class="panel-group" id="info">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#info" href="#collapseInfo"><span class="fa fa-info-circle fa-lg"></span>Info</a>
+                </h4>
+            </div>
+            <div id="collapseInfo" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <i class="fa fa-calendar fa-lg"></i>{$map.date}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-trophy fa-lg"></i>{$map.comment}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-globe fa-lg"></i><a href="events.php?id={$map.eventid}">{$map.event}</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="panel-body">
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="{$map.url}"></iframe>
+    <div class="panel-group" id="maps">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#maps" href="#collapseMaps"><span class="fa fa-sitemap fa-lg"></span>Maps</a>
+                </h4>
+            </div>
+            <div id="collapseMaps" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table class="table">
+                        {foreach $maps m}
+                        <tr>
+                            <td>
+                                <i class="fa fa-gamepad fa-lg"></i><a href="video.php?id={$m.id}">{$m.type}</a>
+                            </td>
+                        </tr>
+                        {/foreach}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-group" id="stats">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#stats" href="#collapseStats"><span class="fa fa-list fa-lg"></span>Stats</a>
+                    <a href="http://stats.optic.tv"><span class="label label-success pull-right">OpTicIntel</span></a>
+                </h4>
+            </div>
+            <div id="collapseStats" class="panel-collapse collapse in">
+                <div class="panel-body" style="padding:15px">
+                    <table class="table">
+                        coL Crimsix // Overall KD: 4.20
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+{/block}
 
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'codvods'; // required: replace example with your forum shortname
-    var disqus_identifier = {$map.id};
+{block "wrapper"}
+<div class="col-md-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <b>
+                    <ol style="margin:-10px;" class="breadcrumb">
+                        <li>{$map.host} {$map.event}</li>
+                        <li>{$map.teamA} vs. {$map.teamB}</li>
+                    </ol>
+                </b>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="{$map.url}"></iframe>
+            </div>
+        </div>
+    </div>
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function () {
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
-    Disqus.</a></noscript>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'codvods'; // required: replace example with your forum shortname
+        var disqus_identifier = {$map.id};
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+        Disqus.</a></noscript>
+</div>
 {/block}

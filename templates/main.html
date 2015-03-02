@@ -70,7 +70,12 @@
     {if isset($notice)}
     <div class="alert alert-info" role="alert">{$notice}</div>
     {/if}
-    {block "wrapper"}{/block}
+    <div class="row">
+        {block "wrapper"}{/block}
+        <div class="col-md-3">
+            {block "rightblock"}{/block}
+        </div>
+    </div>
 </div>
 
 <!-- About dialog -->

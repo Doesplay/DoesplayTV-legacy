@@ -31,6 +31,8 @@ if (mysqli_num_rows($result) > 0) {
             $map['teamA'] = $series['teamA'];
             $map['teamB'] = $series['teamB'];
             $map['bestof'] = $series['bestof'];
+            $map['hostid'] = $series['host'];
+            $map['eventid'] = $series['event'];
             // get event name
             $sql = "SELECT * FROM events WHERE id=" . $series['event'];
             $eventRes = $db->query($sql);
@@ -65,6 +67,7 @@ while ($row4 = mysqli_fetch_assoc($findMaps)) {
     $m['url'] = 'https://www.youtube.com/embed/' . Tools::getVideoId($row4['url']);
     $m['id'] = $row4['id'];
     $m['series'] = $row4['series'];
+    $m['type'] = $row4['type'];
     array_push($maps, $m);
 }
 $data['maps'] = $maps;
