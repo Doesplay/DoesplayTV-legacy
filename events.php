@@ -30,7 +30,7 @@ if (!is_null($event)) {
         // output data of each row
         while ($row = mysqli_fetch_assoc($result)) {
             $seriesTemp = array();
-            $seriesTemp['date'] = $row['date'];
+            $seriesTemp['date'] = Tools::getFriendlyDate($row['date']);
             $seriesTemp['bestof'] = $row['bestof'];
             $seriesTemp['teamA'] = $row['teamA'];
             $seriesTemp['teamB'] = $row['teamB'];

@@ -51,6 +51,11 @@ class Tools
             return "info";
         }
     }
+
+    function getFriendlyDate($date)
+    {
+        return date("M jS Y", strtotime($date));
+    }
 }
 
 class Levels

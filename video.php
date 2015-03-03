@@ -51,7 +51,7 @@ if (mysqli_num_rows($result) > 0) {
                     $map['host'] = $hRow['name'];
                 }
             }
-            $map['date'] = $series['date'];
+            $map['date'] = Tools::getFriendlyDate($series['date']);
             $map['comment'] = $series['comment'];
         }
     }
