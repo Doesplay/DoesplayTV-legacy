@@ -1,0 +1,131 @@
+<script>
+    //triggered when modal is about to be shown
+    $(document).on('show.bs.modal', function (e) {
+        //get data-id attribute of the clicked element
+        var stream = $(e.relatedTarget).data('stream');
+
+        //populate the textbox
+        $(e.currentTarget).find('input[name="stream"]').val(stream);
+    });
+
+    $('.selectpicker').selectpicker();
+</script>
+
+<h3>Streams <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addModal"> <i class="fa fa-plus" aria-hidden="true"></i>Add Stream</button></h3>
+<ul class="list-group">
+    <?php
+		include '../include/Database.php'; 
+		$db = new Database();
+		$streams = $db->query("SELECT * FROM streams");
+        if (mysqli_num_rows($streams) > 0) {
+            while($row = mysqli_fetch_assoc($streams)) {
+                $color = "";
+                $e = intval($row['enabled']);
+                if ($e == 0) {
+                    $color = "list-group-item-danger";
+                } else if ($e == 1) {
+                    $color = "list-group-item-success";
+                }
+                echo '<li class="list-group-item ' . $color . '">' . $row['stream'] . '
+                    <span class="pull-right">
+                        <button type="button" class="btn btn-default btn-xs" data-stream="' . $row['stream'] .'"
+                                data-toggle="modal" data-target="#enableModal">
+                            <i class="fa fa-check" aria-hidden="true"></i>Toggle
+                        </button>
+						<button type="button" class="btn btn-default btn-xs" data-stream="' . $row['stream'] .'"
+                                data-toggle="modal" data-target="#deleteModal">
+                            <i class="fa fa-user-times" aria-hidden="true"></i>Delete
+                        </button>
+					</span>
+                </li>';
+        }
+    }
+    ?>
+</ul>
+
+<!-- Enabled dialog -->
+<div class="modal fade" id="enableModal" tabindex="-1" role="dialog" aria-labelledby="enableModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span
+                        class="glyphicon glyphicon-remove"></span></button>
+                <h4 class="modal-title" id="title">Enable Stream</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" method="post" action="inc/streamenable.php">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="stream-addon">Stream</span>
+                        <input type="text" class="form-control" placeholder="twitch.tv..." name="stream">
+                    </div>
+                    <div class="input-group">
+                        <select class="selectpicker" name="enabled" title="Enabled?" data-width="100%">
+                            <option value="0">Disable</option>
+                            <option value="1">Enable</option>
+                        </select>
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="submit">Confirm?</button>
+						</span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Okay!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete dialog -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span
+                        class="glyphicon glyphicon-remove"></span></button>
+                <h4 class="modal-title" id="title">Delete Stream</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" method="post" action="inc/streamdelete.php">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="stream-addon">Stream</span>
+                        <input type="text" class="form-control" placeholder="twitch.tv..." name="stream">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="submit">Confirm?</button>
+						</span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Okay!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add dialog -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span
+                        class="glyphicon glyphicon-remove"></span></button>
+                <h4 class="modal-title" id="title">Add Stream</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" method="post" action="inc/streamadd.php">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="stream-addon">Stream</span>
+                        <input type="text" class="form-control" placeholder="Twitch Username..." name="url">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="submit">Confirm?</button>
+						</span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Okay!</button>
+            </div>
+        </div>
+    </div>
+</div>

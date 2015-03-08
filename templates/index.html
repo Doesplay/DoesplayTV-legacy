@@ -37,7 +37,7 @@
         </form>
     </div>
     {if $online == true}
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-8">
         </br>
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -45,11 +45,14 @@
             </div>
             <div class="panel-body" style="padding:0px;">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="http://www.twitch.tv/{$channel}/embed" frameborder="0"
-                            scrolling="no"></iframe>
+                    <iframe class="embed-responsive-item" src="http://www.twitch.tv/{$channel}/embed" scrolling="no"></iframe>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="col-md-2" style="padding-left:0px;">
+        </br>
+        <iframe src="http://www.twitch.tv/{$channel}/chat" frameborder="0" scrolling="no" height="471"></iframe>
     </div>
     {/if}
     <div class="col-md-6 col-md-offset-3">

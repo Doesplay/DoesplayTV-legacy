@@ -43,9 +43,20 @@ if (mysqli_num_rows($result) > 0) {
 // actual URL for embedding
 $url = "https://www.youtube.com/embed/" . Tools::getVideoId($longurl);
 
-$channel = "doesplay"; // temp until admin panel setting is added
+// Grab the stream
+$channel = null;
+$enabled = null;
+$sql = "SELECT * FROM streams WHERE enabled=1 LIMIT 1;";
+$result = $db->query($sql);
+if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+    while ($row = mysqli_fetch_assoc($result)) {
+        $channel = $row['stream'];
+        $enabled = $row['enabled'];
+    }
+}
 // check if channel is online
-$online = Tools::isStreamOnline($channel);
+$online = ($enabled == 1 ? Tools::isStreamOnline($channel) : false);
 if ($online) {
     // if it is, grab the title
     $data['stream'] = Tools::getStreamTitle($channel);
